@@ -7,7 +7,7 @@ This can control the modal for an entire application or just when the users need
 `npm install --save ionic-modal-nav`
 
 ## Usage
-Inlcude as a module dependency: 
+Inlcude as a module dependency:
 
 ~~~
 import 'ionic-modal-nav';
@@ -45,7 +45,7 @@ class Controller {
         ...
 ~~~
 
-Any state intended to be viewed in the IonicModalNav needs to point to the 
+Any state intended to be viewed in the IonicModalNav needs to point to the
 `ionic-modal-nav` view name:
 
 ~~~
@@ -68,56 +68,56 @@ Allows users to configure the modal nav similar to how Ionic allows.
 
 @params.options.animation  - The animation to show & hide with.
 
-@params.options.focusFirstInput - Whether to autofocus the first input of the modal when shown. 
-Will only show the keyboard on iOS, to force the keyboard to show on Android, 
+@params.options.focusFirstInput - Whether to autofocus the first input of the modal when shown.
+Will only show the keyboard on iOS, to force the keyboard to show on Android,
 please use the Ionic keyboard plugin.
 
 @params.options.backdropClickToClose - Whether to close the modal on clicking the backdrop.
 
-@params.options.hardwareBackButtonClose - Whether the modal can be closed using the hardware back 
+@params.options.hardwareBackButtonClose - Whether the modal can be closed using the hardware back
 button on Android and similar devices.
 ~~~
 
 ##### IonicModalNavService.show(modalState, data)
 Open the modal and transition to the given modal state with no animation.
-Cache the `backView` and the `currentView` so we can restore proper state once 
+Cache the `backView` and the `currentView` so we can restore proper state once
 the modal is closed.
- 
+
  ~~~
 @param {string} modalState - Modal state name
 @param {object} data - State data
  ~~~
- 
+
 ##### IonicModalNavService.go(modalState, data)
 Wrapper around the usual `$state.go()`. If data is passed, it will be sent.
- 
+
 ~~~
 @param {string} modalState
 @param {object} state data
 ~~~
-     
+
 ##### IonicModalNavService.goBack(data)
 Wrapper around usual `$ionicHistory.goBack()`. If data is passed, the incoming state can react
 by subscribing to `onBack(callback)`
 
 `@param {object} data`
-     
+
 ##### IonicModalNavService.hide(data)    
-Closes the `IonicModalNav`. If data is passed, the incoming state can react by subscribing to 
+Closes the `IonicModalNav`. If data is passed, the incoming state can react by subscribing to
 `onClose(calback)`
 
 `@param {object} data`
-     
-##### IonicModalNavService.destroy()    
-Destroy the instance of `IonicModalNav` (probably never used)
+
+##### IonicModalNavService.remove()    
+Remove the instance of `IonicModalNav`
 
 ## Callback handlers
 
 ##### IonicModalNavService.onBack(callback)    
-Register a `callback` function to react to a modal state going backwards. 
+Register a `callback` function to react to a modal state going backwards.
 
 `@param {Function} callback`
- 
+
  ##### IonicModalNavService.onClose(callback)    
 Register a `callback` function to react to the `IonicModalNav` closing.
 

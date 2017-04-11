@@ -15,10 +15,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var SHOW_MODAL = "ionicModalNav:show";
 var HIDE_MODAL = "ionicModalNav:hide";
-var DESTROY_MODAL = "ionicModalNav:destroy";
+var REMOVE_MODAL = "ionicModalNav:remove";
 
 /**
- * @description 
+ * @description
  * Channels for reacting to modal events
  * * ionicModalNav:backdata - Fired when going back from a modal state
  * * ionicModalNav:closeData - Fired when the modal is closed
@@ -31,7 +31,7 @@ var MODAL_CLOSE_DATA = "ionicModalNav:closeData";
  * @module IonicModalNav
  * @description
  * Service used to orchestrate multiple states within an $ionicModal. This
- * can servce as the application's main modal but the user is free to spawn 
+ * can servce as the application's main modal but the user is free to spawn
  * other modals within the application or even within the IonicModalNav if desired
  */
 
@@ -73,19 +73,19 @@ var IonicModalNavService = function () {
                 _this._modal.hide();
             });
 
-            $rootScope.$on(DESTROY_MODAL, function (event, data) {
-                _this._modal.destroy();
+            $rootScope.$on(REMOVE_MODAL, function (event, data) {
+                _this._modal.remove();
             });
         }
     }
 
     /**
      * Open the modal and transition to the given modal state with no animation.
-     * Cache the `backView` and the `currentView` so we can restore proper state once 
+     * Cache the `backView` and the `currentView` so we can restore proper state once
      * the modal is closed.
-     * 
+     *
      * @param {string} modalState
-     * @params {Object} data                    
+     * @params {Object} data
      */
 
 
@@ -108,9 +108,9 @@ var IonicModalNavService = function () {
         }
 
         /**
-         * Wrapper around the usual `$state.go()`. Force the animation direction to be 
+         * Wrapper around the usual `$state.go()`. Force the animation direction to be
          * forward using `$ionicViewSwitcher`
-         * 
+         *
          * @param {string} modalState
          */
 
@@ -126,9 +126,9 @@ var IonicModalNavService = function () {
         }
 
         /**
-         * Wrapper around usual `$ionicHistory.goBack()`. If data is passed, send it on 
+         * Wrapper around usual `$ionicHistory.goBack()`. If data is passed, send it on
          * the `ionicModalNav:backData` channel.
-         * 
+         *
          * @param {Object} data
          */
 
@@ -143,9 +143,9 @@ var IonicModalNavService = function () {
 
         /**
          * Restore the cache `backView` and `currentView` to the `$ionicHistory` and
-         * close the modal. If data is passed, send it on the 
+         * close the modal. If data is passed, send it on the
          * `ionicModalNav:closeData` channel.
-         * 
+         *
          * @param {any} data
          */
 
@@ -164,13 +164,13 @@ var IonicModalNavService = function () {
         }
 
         /**
-         * Destroy the modal (probably never used)
+         * Removes the modal (probably never used)
          */
 
     }, {
-        key: "destroy",
-        value: function destroy() {
-            this._$rootScope.$emit(DESTROY_MODAL);
+        key: "remove",
+        value: function remove() {
+            this._$rootScope.$emit(REMOVE_MODAL);
         }
 
         //-------------------------
@@ -180,7 +180,7 @@ var IonicModalNavService = function () {
          * Register a callback function when a modal state goes back. To
          * ensure the correct callback is fired, the registering `viewId` is mapped to the passed
          * callback function. If data ia passed, it will be given to the callback function.
-         * 
+         *
          * @param {Function} callback
          */
 
@@ -206,7 +206,7 @@ var IonicModalNavService = function () {
          * Register a callback function when the modal closes. To ensure the correct
          * callback is fired, the registering `viewId` is mapped to the passed
          * callback function. If data ia passed, it will be given to the callback function.
-         * 
+         *
          * @param {Function} callback
          */
 
@@ -263,7 +263,7 @@ var IonicModalNavServiceConfig = function () {
     return IonicModalNavServiceConfig;
 }();
 
-// --- Declare module -- 
+// --- Declare module --
 
 var moduleName = 'IonicModalNav';
 
